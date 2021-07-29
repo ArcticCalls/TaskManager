@@ -14,8 +14,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tasks.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_TASK = "task_name";
+    private static final String TABLE_TASK = "task";
     private static final String COLUMN_ID = "ID";
+    private static final String COLUMN_TASK_NAME = "task_name";
     private static final String COLUMN_DESCRIPTION = "description";
 
     public DBHelper(Context context) {
@@ -25,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createNoteTableSql = "CREATE TABLE " + TABLE_TASK + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_TASK_NAME + "TEXT"
                 + COLUMN_DESCRIPTION + " TEXT ) ";
         db.execSQL(createNoteTableSql);
 
@@ -39,20 +40,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public long insertNote(String noteContent) {
+    public long addTask(String taskContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DESCRIPTION, noteContent);
+        values.put(COLUMN_TASK_NAME, taskContent);
+        values.put(COLUMN_DESCRIPTION, taskContent);
         long result = db.insert(TABLE_TASK, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
         return result;
     }
 
-    public ArrayList<Tasks> getAllNotes() {
+    public ArrayList<Tasks> getAllTasks() {
         ArrayList<Tasks> tasks = new ArrayList<Tasks>();
 
-        String selectQuery = "SELECT " + COLUMN_ID + ","
+        String selectQuery = "SELECT " + COLUMN_ID + "," + COLUMN_TASK_NAME + ","
                 + COLUMN_DESCRIPTION + " FROM " + TABLE_TASK;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -71,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
-    public int updateNote(Tasks data){
+    public int updateTask(Tasks data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_DESCRIPTION, data.getDesc());
