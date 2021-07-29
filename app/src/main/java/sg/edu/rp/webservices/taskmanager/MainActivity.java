@@ -26,12 +26,7 @@ public class MainActivity extends AppCompatActivity {
         lvTask = findViewById(R.id.lvTask);
         btnAddTask = findViewById(R.id.btnAddTask);
 
-        tasksList = new ArrayList<Tasks>();
-        DBHelper dbh = new DBHelper(MainActivity.this);
-        tasksList.addAll(dbh.getAllTasks());
-        dbh.close();
-        aa = new TaskAdapter(MainActivity.this, R.layout.row, tasksList);
-        lvTask.setAdapter(aa);
+
 
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,5 +36,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tasksList = new ArrayList<Tasks>();
+
+        DBHelper dbh = new DBHelper(MainActivity.this);
+        tasksList.addAll(dbh.getAllTasks());
+        dbh.close();
+
+        aa = new TaskAdapter(MainActivity.this, R.layout.row, tasksList);
+        lvTask.setAdapter(aa);
     }
 }
