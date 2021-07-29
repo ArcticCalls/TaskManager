@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         lvTask = findViewById(R.id.lvTask);
         btnAddTask = findViewById(R.id.btnAddTask);
 
-
-
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
 
     @Override
