@@ -34,6 +34,7 @@ public class AddActivity extends AppCompatActivity {
                     if (inserted_id != -1) {
                         Toast.makeText(AddActivity.this, "Task added!",
                                 Toast.LENGTH_SHORT).show();
+                        finish();
                     }
             }
         });
