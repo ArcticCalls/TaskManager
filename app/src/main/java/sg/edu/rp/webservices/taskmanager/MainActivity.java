@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         aa = new TaskAdapter(MainActivity.this, R.layout.row, tasksList);
         lvTask.setAdapter(aa);
 
-
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,24 +46,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        btnAddTask = findViewById(R.id.btnAddTask);
-        btnAddTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = null;
-                i = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(i);
-
-                Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.SECOND, 5);
-
-                Intent intent = new Intent(MainActivity.this, NotificationReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, reqCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
-                am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-
-            }
-        });
     }
 }
