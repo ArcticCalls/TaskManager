@@ -9,11 +9,12 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tasks.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_TASK = "task";
+    private static final String TABLE_TASK = "task_name";
     private static final String COLUMN_ID = "ID";
     private static final String COLUMN_DESCRIPTION = "description";
 
@@ -48,8 +49,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<Notes> getAllNotes() {
-        ArrayList<Notes> notes = new ArrayList<Notes>();
+    public ArrayList<Tasks> getAllNotes() {
+        ArrayList<Tasks> tasks = new ArrayList<Tasks>();
 
         String selectQuery = "SELECT " + COLUMN_ID + ","
                 + COLUMN_DESCRIPTION + " FROM " + TABLE_TASK;
@@ -60,20 +61,20 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 int id = cursor.getInt(0);
                 //String noteTitle = cursor.getString(1);
-                String noteDescription = cursor.getString(1);
-                Notes note = new Notes(id, noteDescription);
-                notes.add(note);
+                String taskDescription = cursor.getString(1);
+                Tasks task = new Tasks(id, taskDescription);
+                tasks.add(task);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return notes;
+        return tasks;
     }
 
-    public int updateNote(Notes data){
+    public int updateNote(Tasks data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DESCRIPTION, data.getDescription());
+        values.put(COLUMN_DESCRIPTION, data.getDesc());
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(data.getId())};
         int result = db.update(TABLE_TASK, values, condition, args);
@@ -81,12 +82,4 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int deleteNote(int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String condition = COLUMN_ID + "= ?";
-        String[] args = {String.valueOf(id)};
-        int result = db.delete(TABLE_TASK, condition, args);
-        db.close();
-        return result;
-    }
 }
