@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tasks.db";
