@@ -23,21 +23,16 @@ public class AddActivity extends AppCompatActivity {
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                     String dataName = etName.getText().toString();
                     String dataDescription = etDescription.getText().toString();
                     DBHelper dbh = new DBHelper(AddActivity.this);
-                    long inserted_id = dbh.addTask(dataName);
+                    long inserted_id = dbh.addTask(dataName + dataDescription);
                     dbh.close();
 
                     if (inserted_id != -1) {
-                        Toast.makeText(AddActivity.this, "Note added!",
+                        Toast.makeText(AddActivity.this, "Task added!",
                                 Toast.LENGTH_SHORT).show();
                     }
-
-
-
             }
         });
     }
