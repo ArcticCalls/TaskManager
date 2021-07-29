@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.SECOND, 5);
 
-                Intent intent = new Intent(MainActivity.this, fivesecondlater.class);
+                Intent intent = new Intent(MainActivity.this, NotificationReceiver.class);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, reqCode, intent, PendingIntent.FLAG_CANCEL_CURRENT);
                 AlarmManager am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
