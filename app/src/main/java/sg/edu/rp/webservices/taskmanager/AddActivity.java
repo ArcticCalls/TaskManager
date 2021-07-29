@@ -28,7 +28,7 @@ public class AddActivity extends AppCompatActivity {
                     String dataName = etName.getText().toString();
                     String dataDescription = etDescription.getText().toString();
                     DBHelper dbh = new DBHelper(AddActivity.this);
-                    long inserted_id = dbh.addTask(dataName);
+                    long inserted_id = dbh.addTask(dataName + dataDescription);
                     dbh.close();
 
                     if (inserted_id != -1) {
