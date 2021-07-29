@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskManager">
         <receiver
+            android:name=".fivesecondlater"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
+        <activity android:name=".AddActivity" />
+        <receiver
             android:name=".NotificationReceiver"
             android:enabled="true"
             android:exported="true"></receiver>

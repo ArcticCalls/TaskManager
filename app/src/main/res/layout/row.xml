@@ -2,19 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/lvTask"
+    <TextView
+        android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
-    </ListView>
+        android:text="TextView" />
 
-    <Button
-        android:id="@+id/btnAddTask"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Task" />
+        android:text="TextView" />
 </LinearLayout>
