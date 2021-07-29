@@ -6,16 +6,16 @@ import java.io.Serializable;
 
 public class Tasks implements Serializable {
 
-    private int id;
+    private int _id;
     private String desc;
 
     public Tasks(int id, String desc){
-        this.id = id;
+        this._id = id;
         this.desc = desc;
     }
 
     public int getId(){
-        return id;
+        return _id;
     }
 
     public String getDesc(){
@@ -23,7 +23,7 @@ public class Tasks implements Serializable {
     }
 
     public  void setId(int id){
-        this.id = id;
+        this._id = id;
     }
 
     public void  setDesc(String desc){
@@ -33,6 +33,6 @@ public class Tasks implements Serializable {
 
     @Override
     public String toString() {
-        return id + "\n" + desc;
+        return _id + "\n" + desc;
     }
 }
