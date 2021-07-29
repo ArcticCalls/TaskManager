@@ -19,8 +19,7 @@
             android:name=".NotificationReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
-
-        <activity android:name=".AddActivity" />
+        
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
