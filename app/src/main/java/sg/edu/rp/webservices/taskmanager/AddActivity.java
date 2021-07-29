@@ -19,6 +19,8 @@ public class AddActivity extends AppCompatActivity {
 
         btnCancel = findViewById(R.id.btnCancel);
         btnAddTask = findViewById(R.id.btnAddTask);
+        etName = findViewById(R.id.etName);
+        etDescription = findViewById(R.id.etDescription);
 
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
