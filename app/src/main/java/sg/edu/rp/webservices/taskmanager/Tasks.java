@@ -10,7 +10,7 @@ public class Tasks implements Serializable {
     private String name;
     private String desc;
 
-    public Tasks(int id, String desc, String name){
+    public Tasks(int id, String name, String desc){
         this.id = id;
         this.desc = desc;
         this.name = name;
