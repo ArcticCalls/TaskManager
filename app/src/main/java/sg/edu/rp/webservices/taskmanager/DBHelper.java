@@ -13,12 +13,11 @@ import java.util.ArrayList;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tasks.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 1;
     private static final String TABLE_TASK = "task";
     private static final String COLUMN_ID = "ID";
     private static final String COLUMN_TASK_NAME = "task_name";
     private static final String COLUMN_DESCRIPTION = "description";
-    private static final String COLUMN_SECONDS = "seconds";
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createNoteTableSql = "CREATE TABLE " + TABLE_TASK + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_TASK_NAME + " TEXT,"
-                + COLUMN_DESCRIPTION + " TEXT," + COLUMN_SECONDS + " INTEGER ) ";
+                + COLUMN_DESCRIPTION + " TEXT) ";
         db.execSQL(createNoteTableSql);
 
     }
@@ -38,15 +37,13 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASK);
         onCreate(db);
         db.execSQL("ALTER TABLE " + TABLE_TASK + " ADD COLUMN module_name TEXT ");
-
     }
 
-    public long addTask(String taskName, String taskDescription, int taskSeconds) {
+    public long addTask(String taskName, String taskDescription) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TASK_NAME, taskName);
         values.put(COLUMN_DESCRIPTION, taskDescription);
-        values.put(COLUMN_SECONDS, taskSeconds);
         long result = db.insert(TABLE_TASK, null, values);
         db.close();
         Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
@@ -57,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Tasks> tasks = new ArrayList<Tasks>();
 
         String selectQuery = "SELECT " + COLUMN_ID + "," + COLUMN_TASK_NAME + ","
-                + COLUMN_DESCRIPTION + "," + COLUMN_SECONDS + " FROM " + TABLE_TASK;
+                + COLUMN_DESCRIPTION + " FROM " + TABLE_TASK;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -67,8 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int id = cursor.getInt(0);
                 String taskName = cursor.getString(1);
                 String taskDescription = cursor.getString(2);
-                int taskSeconds = cursor.getInt(3);
-                Tasks task = new Tasks(id, taskName, taskDescription, taskSeconds);
+                Tasks task = new Tasks(id, taskName, taskDescription);
                 tasks.add(task);
             } while (cursor.moveToNext());
         }

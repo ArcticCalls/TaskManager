@@ -2,9 +2,6 @@ package sg.edu.rp.webservices.taskmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +10,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,8 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnAddTask;
     ArrayAdapter aa;
     ArrayList<Tasks> tasksList;
-    int reqCode = 12345;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,12 +26,7 @@ public class MainActivity extends AppCompatActivity {
         lvTask = findViewById(R.id.lvTask);
         btnAddTask = findViewById(R.id.btnAddTask);
 
-        tasksList = new ArrayList<Tasks>();
-        DBHelper dbh = new DBHelper(MainActivity.this);
-        tasksList.addAll(dbh.getAllTasks());
-        dbh.close();
-        aa = new TaskAdapter(MainActivity.this, R.layout.row, tasksList);
-        lvTask.setAdapter(aa);
+
 
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,5 +36,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        tasksList = new ArrayList<Tasks>();
+
+        DBHelper dbh = new DBHelper(MainActivity.this);
+        tasksList.addAll(dbh.getAllTasks());
+        dbh.close();
+
+        aa = new TaskAdapter(MainActivity.this, R.layout.row, tasksList);
+        lvTask.setAdapter(aa);
     }
 }
