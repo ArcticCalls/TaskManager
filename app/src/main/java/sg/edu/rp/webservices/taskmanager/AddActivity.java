@@ -38,7 +38,7 @@ public class AddActivity extends AppCompatActivity {
                 String dataDescription = etDescription.getText().toString();
                 int dataSeconds = Integer.parseInt(etRemind.getText().toString());
                 DBHelper dbh = new DBHelper(AddActivity.this);
-                long inserted_id = dbh.addTask(dataName + dataDescription + dataSeconds);
+                long inserted_id = dbh.addTask(dataName , dataDescription , dataSeconds);
                 dbh.close();
 
                 if (inserted_id != -1) {
