@@ -34,7 +34,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.setBigContentTitle("Feeling Good Lyrics");
-        bigText.bigText("Birds flying high, you know how I feel" + "\nSun in the sky, you know how I feel" + "\nReeds driftin on by, you know how I feel" + "\nIt's a new dawn, it's a new day, it's a new life for me" + "\nYeah~~ \n It's a new dawn, it's a new day, it's a new life for me" + "\nOooooh... \nAnd I'm feeling good");
+        bigText.bigText("Birds flying high, you know how I feel" + "\nSun in the sky, you know how I feel" + "\nReeds driftin' on by, you know how I feel" + "\nIt's a new dawn, it's a new day, it's a new life for me" + "\nYeah~~ \nIt's a new dawn, it's a new day, it's a new life for me" + "\nOooooh... \nAnd I'm feeling good");
         builder.setContentTitle("Feeling Good Lyrics");
         builder.setContentText("Birds flying high, you know how I feel");
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
