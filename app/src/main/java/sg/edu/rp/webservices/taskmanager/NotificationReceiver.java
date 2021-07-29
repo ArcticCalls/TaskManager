@@ -32,6 +32,9 @@ public class NotificationReceiver extends BroadcastReceiver {
         PendingIntent pIntent = PendingIntent.getActivity (context, reqCode, i, PendingIntent.FLAG_CANCEL_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.setBigContentTitle("Feeling Good Lyrics");
+        bigText.bigText("Birds ");
         builder.setContentTitle("Amazing Offer!");
         builder.setContentText("Subject");
         builder.setLights(Color.GREEN, 400,500);
