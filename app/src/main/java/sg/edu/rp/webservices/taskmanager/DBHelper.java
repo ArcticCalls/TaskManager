@@ -64,10 +64,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 Log.d("Message",cursor.getString(1));
                 int id = cursor.getInt(0);
                 //String noteTitle = cursor.getString(1);
-                String taskDescription = cursor.getString(1);
-                String taskName = cursor.getString(2);
+                String taskName = cursor.getString(1);
+                String taskDescription = cursor.getString(2);
                 int taskSeconds = cursor.getInt(3);
-                Tasks task = new Tasks(id, taskDescription, taskName , taskSeconds);
+                Tasks task = new Tasks(id, taskName, taskDescription, taskSeconds);
                 tasks.add(task);
             } while (cursor.moveToNext());
         }
