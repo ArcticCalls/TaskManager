@@ -79,6 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public int updateTask(Tasks data){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(COLUMN_TASK_NAME, data.getName());
         values.put(COLUMN_DESCRIPTION, data.getDesc());
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(data.getId())};
