@@ -34,15 +34,15 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
         bigText.setBigContentTitle("Feeling Good Lyrics");
-        bigText.bigText("Birds ");
+        bigText.bigText("Birds flying high, you know how I feel" + "\nSun in the sky, you know how I feel" + "\nReeds driftin on by, you know how I feel" + "\nIt's a new dawn, it's a new day, it's a new life for me" + "\nYeah~~ \n It's a new dawn, it's a new day, it's a new life for me" + "\nOooooh... \nAnd I'm feeling good");
         builder.setContentTitle("Amazing Offer!");
         builder.setContentText("Subject");
-        builder.setLights(Color.GREEN, 400,500);
-        builder.setVibrate(new long[] {0, 1000, 200, 1000});
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pIntent);
+        builder.setStyle(bigText);
         builder.setAutoCancel(true);
-
+        builder.setLights(Color.GREEN, 400,500);
+        builder.setVibrate(new long[] {0, 1000, 200, 1000});
         Notification n = builder.build();
         notificationManager.notify(123, n);
     }
