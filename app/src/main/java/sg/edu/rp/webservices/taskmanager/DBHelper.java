@@ -14,7 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "tasks.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_TASK = "task";
+    private static final String TABLE_TASK = "task name";
     private static final String COLUMN_ID = "ID";
     private static final String COLUMN_DESCRIPTION = "description";
 
@@ -82,12 +82,4 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int deleteNote(int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String condition = COLUMN_ID + "= ?";
-        String[] args = {String.valueOf(id)};
-        int result = db.delete(TABLE_TASK, condition, args);
-        db.close();
-        return result;
-    }
 }
